@@ -13,7 +13,6 @@ app.config['MYSQL_PASSWORD'] = MYSQL_PASSWORD
 app.config['MYSQL_DB'] = MYSQL_DB
 mysql = MySQL(app)
 
-# Decorador para aplicar retries a la función de base de datos
 def retry_db_operation(func):
     @retry(stop=stop_never, wait=wait_fixed(10), retry=retry_if_exception_type(OperationalError))
     def wrapper(*args, **kwargs):

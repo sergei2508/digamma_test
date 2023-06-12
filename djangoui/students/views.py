@@ -5,12 +5,10 @@ from requests.exceptions import ConnectionError
 def student_list(request):
     try:
         response = requests.get('http://flask-app:5000/students')
-        response.raise_for_status()  # Verifica si hay errores en la respuesta
         students = response.json()
         return render(request, 'students/student_list.html', {'students': students})
     except ConnectionError as e:
         print(f'Error de conexión: {e}')
-        # Puedes mostrar un mensaje de error en la página o redirigir a una vista de error
         return render(request, 'students/connection_error.html')
 
 def create_student(request):
@@ -30,7 +28,6 @@ def create_student(request):
             return redirect('student_list')
         except ConnectionError as e:
             print(f'Error de conexión: {e}')
-            # Puedes mostrar un mensaje de error en la página o redirigir a una vista de error
 
     return render(request, 'students/create_student.html')
 
@@ -64,7 +61,6 @@ def edit_student(request, student_id):
                 return redirect('student_list')
     except ConnectionError as e:
         print(f'Error de conexión: {e}')
-        # Puedes mostrar un mensaje de error en la página o redirigir a una vista de error
 
     return redirect('student_list')
 
@@ -78,4 +74,3 @@ def delete_student(request, student_id):
 
     except ConnectionError as e:
         print(f'Error de conexión: {e}')
-        # Puedes mostrar un mensaje de error en la página o redirigir a una vista de error
