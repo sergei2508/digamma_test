@@ -1,13 +1,13 @@
 ## Environments setup
 
-please install `docker` and `docker-compose`.
+please install `docker` and `docker compose`.
 
 ## Build and up
 ```sh
 $ git clone https://github.com/sergei2508/digamma_test.git
 $ cd digamma_test
-$ docker-compose build
-$ docker-compose up -d
+$ docker compose build
+$ docker compose up -d
 ```
 ## Usage
 ```
