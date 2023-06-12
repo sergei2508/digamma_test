@@ -94,13 +94,11 @@ def update_student(student_id):
         name = data['name']
         age = data['age']
         email = data['email']
-
-        query = "UPDATE students SET name=%s, age=%s, email=%s WHERE id=%s"
         try:
-            query = "INSERT INTO students (name, age, email) VALUES (%s, %s, %s)"
-            execute_db_query(query, (name, age, email))
+            query = "UPDATE students SET name=%s, age=%s, email=%s WHERE id=%s"
+            execute_db_query(query, (name, age, email, student_id))
 
-            return jsonify({'message': 'Student created successfully'})
+            return jsonify({'message': 'Student updated successfully'})
         except Exception as e:
             error_message = str(e)
             return jsonify({'error': error_message}), 400
