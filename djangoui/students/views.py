@@ -52,13 +52,14 @@ def edit_student(request, student_id):
                 'age': age,
                 'email': email
             }
-
+            
             response = requests.put(f'http://flask-app:5000/students/{student_id}', json=data)
 
             if response.status_code == 200:
                 return redirect('student_list')
             else:
                 return redirect('student_list')
+            
     except ConnectionError as e:
         print(f'Error de conexión: {e}')
 
