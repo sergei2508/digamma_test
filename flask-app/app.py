@@ -97,9 +97,14 @@ def update_student(student_id):
         email = data['email']
 
         query = "UPDATE students SET name=%s, age=%s, email=%s WHERE id=%s"
-        execute_db_query(query, (name, age, email, student_id))
+        try:
+            query = "INSERT INTO students (name, age, email) VALUES (%s, %s, %s)"
+            execute_db_query(query, (name, age, email))
 
-        return jsonify({'message': 'Student updated successfully'})
+            return jsonify({'message': 'Student created successfully'})
+        except Exception as e:
+            error_message = str(e)
+            return jsonify({'error': error_message}), 400
     else:
         raise NotFound("Student not found")
 
@@ -140,3 +145,4 @@ def create_table():
 if __name__ == '__main__':
     create_table()
     app.run(host='0.0.0.0', port=5000, debug=True)
+
