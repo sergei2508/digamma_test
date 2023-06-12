@@ -1,0 +1,27 @@
+version: '3'
+services:
+  flask-app:
+    build:
+      context: ./flask-app
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=students
+
+  django-app:
+    build:
+      context: ./djangoui
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - mysql-db
+      - flask-app

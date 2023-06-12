@@ -1,0 +1,5 @@
+flask 
+tenacity
+flask_mysqldb
+pymysql
+werkzeug
