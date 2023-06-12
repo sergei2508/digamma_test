@@ -57,7 +57,6 @@ def edit_student(request, student_id):
             }
 
             response = requests.put(f'http://flask-app:5000/students/{student_id}', json=data)
-            response.raise_for_status()  # Verifica si hay errores en la respuesta
 
             if response.status_code == 200:
                 return redirect('student_list')
